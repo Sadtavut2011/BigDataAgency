@@ -1,0 +1,42 @@
+import imgRectangle21 from "figma:asset/f32c048d3baf531b7428fe619d8f641a9e8c2337.png";
+import imgRectangle22 from "figma:asset/0aa744c4ffaf191eeb45164a7392ce8104f6f582.png";
+import imgRectangle23 from "figma:asset/367cd00ee29321b2c0852acdca97a74a1873b01e.png";
+import imgRectangle24 from "figma:asset/1c54e7056f94aec9f1beaac2c0fcb9a9bab4f051.png";
+
+function Show() {
+  return (
+    <div className="absolute h-[490px] left-[591px] top-[174px] w-[2331px]" data-name="show">
+      <div className="absolute h-[490px] left-0 rounded-[30px] top-0 w-[735px]">
+        <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none rounded-[30px] size-full" src={imgRectangle21} />
+      </div>
+      <div className="absolute h-[490px] left-[calc(50%-32px)] top-0 translate-x-[-50%] w-[735px]">
+        <div className="absolute inset-[-0.82%_-0.54%]">
+          <img alt="" className="block max-w-none size-full" height="498" src={imgRectangle22} width="743" />
+        </div>
+      </div>
+      <div className="absolute blur-[2px] filter h-[490px] left-[1596px] rounded-[30px] top-0 w-[735px]">
+        <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none rounded-[30px] size-full" src={imgRectangle23} />
+      </div>
+    </div>
+  );
+}
+
+function Frame() {
+  return (
+    <div className="absolute bg-[rgba(153,161,175,0.4)] h-[510px] left-[72px] overflow-clip rounded-[50px] top-[164px] w-[501px]">
+      <div className="absolute h-[104px] left-[85px] top-[89px] w-[313px]">
+        <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgRectangle24} />
+      </div>
+      <p className="absolute font-['Inter:Bold',sans-serif] font-bold leading-[normal] left-[242px] not-italic text-[24px] text-black text-center text-nowrap top-[255px] translate-x-[-50%] whitespace-pre">PEA Serviec D (ICS)</p>
+    </div>
+  );
+}
+
+export default function Pea() {
+  return (
+    <div className="bg-white relative size-full" data-name="PEA">
+      <Show />
+      <Frame />
+    </div>
+  );
+}
