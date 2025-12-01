@@ -55,6 +55,7 @@ export function PortfolioPage() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const textRef = useRef(null);
 
   // Scroll progress for horizontal effect
   const { scrollYProgress } = useScroll({
@@ -64,7 +65,17 @@ export function PortfolioPage() {
 
   // Transform scroll progress to horizontal translation
   // 0% = fully off-screen right, 100% = fully on screen
-  const xTransform = useTransform(scrollYProgress, [0, 0.3, 1], ["100%", "0%", "0%"]);
+  const xTransform = useTransform(scrollYProgress, [0, 0.5, 1], ["100%", "0%", "0%"]);
+  
+  // Transform scroll progress to blur effect for background
+  const blurTransform = useTransform(scrollYProgress, [0, 0.5], ["blur(0px)", "blur(8px)"]);
+  
+  // Parallax effect for the text - เลื่อนลงช้ากว่า scroll ปกติ
+  const { scrollYProgress: textScrollProgress } = useScroll({
+    target: textRef,
+    offset: ["start end", "end start"]
+  });
+  const textY = useTransform(textScrollProgress, [0, 1], [-100, 300]);
 
   const portfolios: Portfolio[] = [
     {
@@ -353,15 +364,18 @@ export function PortfolioPage() {
   return (
     <div className="relative bg-white">
       {/* Project Showcase Section - Fixed background */}
-      <div className="fixed top-0 left-0 w-full h-screen z-0">
+      <motion.div 
+        className="fixed top-0 left-0 w-full h-screen z-0"
+        style={{ filter: blurTransform }}
+      >
         <ProjectShowcase />
-      </div>
+      </motion.div>
 
       {/* Spacer to create scroll space */}
       <div className="h-screen w-full" />
 
       {/* Scrollable content container */}
-      <div ref={scrollContainerRef} className="relative min-h-[300vh]">
+      <div ref={scrollContainerRef} className="relative min-h-[500vh]">
         {/* Content that slides in from right */}
         <motion.div 
           className="sticky top-0 h-screen w-full overflow-hidden"
@@ -386,10 +400,13 @@ export function PortfolioPage() {
             </div>
             
             {/* Content */}
-            <div className="relative z-10">
-              <h1 className="text-4xl md:text-6xl text-white mb-6 max-w-5xl mx-auto leading-tight drop-shadow-lg">
+            <div ref={textRef} className="relative z-10">
+              <motion.h1 
+                className="text-4xl md:text-6xl text-white mb-6 max-w-5xl mx-auto leading-tight drop-shadow-lg"
+                style={{ y: textY }}
+              >
                 10 years dedicated to perfection, ensuring guaranteed success for every partner we empower.
-              </h1>
+              </motion.h1>
               <div className="h-1 w-32 bg-white mx-auto mt-8" />
               
               {/* Scroll Hint */}

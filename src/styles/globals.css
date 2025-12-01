@@ -186,4 +186,10 @@
 
 html {
   font-size: var(--font-size);
+  scroll-behavior: smooth;
+}
+
+/* Slower, smoother scroll for portfolio page */
+body {
+  scroll-behavior: smooth;
 }
